@@ -1,0 +1,30 @@
+.about-services{
+    background: #f2f2f2;
+    padding-block: 30px;
+
+}
+
+.hoteles-cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.servicio-ind{
+    width: 28%;
+    text-align: center;
+}
+
+.servicio-ind img{
+    width: 90%;
+}
+
+.servicio-ind h3{
+    margin: 10px 0;
+
+}
+
+.servicio-ind p{
+    font-weight: 300;
+    text-align: justify;
+
+}
