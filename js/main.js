@@ -17,7 +17,6 @@ let reserva = {
     costoTotal: 0
 };
 
-// Cargar destinos y alojamientos en los selects
 function cargarSelects() {
     const destinoSelect = document.getElementById("destinoSelect");
     const alojamientoSelect = document.getElementById("alojamientoSelect");
@@ -37,12 +36,10 @@ function cargarSelects() {
     });
 }
 
-// Almacenar reserva en localStorage
 function guardarReservaEnLocalStorage() {
     localStorage.setItem('reserva', JSON.stringify(reserva));
 }
 
-// Mostrar resultados en el DOM
 function mostrarResultados() {
     const resultado = document.getElementById("resultado");
     resultado.innerHTML = `
@@ -53,7 +50,6 @@ function mostrarResultados() {
     `;
 }
 
-// Calcular costo total
 function calcularCostoTotal() {
     const costoDestino = reserva.destino.precioPorNoche * reserva.noches;
     const costoAlojamiento = reserva.alojamiento.precioPorNoche * reserva.noches;
@@ -63,7 +59,6 @@ function calcularCostoTotal() {
     mostrarResultados();
 }
 
-// Manejar el evento de reserva
 document.getElementById("reservarBtn").addEventListener("click", () => {
     const destinoSelect = document.getElementById("destinoSelect");
     const alojamientoSelect = document.getElementById("alojamientoSelect");
@@ -80,5 +75,4 @@ document.getElementById("reservarBtn").addEventListener("click", () => {
     }
 });
 
-// Cargar los selects al cargar la página
 window.onload = cargarSelects;
