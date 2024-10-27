@@ -1,15 +1,5 @@
-const destinos = [
-    { nombre: "Bariloche", precioPorNoche: 100 },
-    { nombre: "Calafate", precioPorNoche: 150 },
-    { nombre: "Cataratas del Iguazú", precioPorNoche: 200 }
-];
-
-const alojamientos = [
-    { tipo: "Hotel Sol Bariloche", precioPorNoche: 80 },
-    { tipo: "Hotel Mirador del Lago", precioPorNoche: 50 },
-    { tipo: "Hotel Iguazú", precioPorNoche: 120 }
-];
-
+const destinos = [];
+const alojamientos = [];
 let reserva = {
     destino: null,
     alojamiento: null,
@@ -17,9 +7,34 @@ let reserva = {
     costoTotal: 0
 };
 
+async function cargarDatos() {
+    try {
+        const [destinosResponse, alojamientosResponse] = await Promise.all([
+            fetch('data/destinos.json'), 
+            fetch('data/alojamientos.json') 
+        ]);
+        
+        if (!destinosResponse.ok || !alojamientosResponse.ok) {
+            throw new Error('Error en la carga de datos');
+        }
+
+        const destinosData = await destinosResponse.json();
+        const alojamientosData = await alojamientosResponse.json();
+
+        destinos.push(...destinosData);
+        alojamientos.push(...alojamientosData);
+
+        cargarSelects();
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+        alert('No se pudieron cargar los datos. Por favor, intenta de nuevo más tarde.');
+    }
+}
+
 function cargarSelects() {
     const destinoSelect = document.getElementById("destinoSelect");
     const alojamientoSelect = document.getElementById("alojamientoSelect");
+
 
     destinos.forEach((destino, index) => {
         const option = document.createElement("option");
@@ -27,6 +42,7 @@ function cargarSelects() {
         option.textContent = `${destino.nombre} - $${destino.precioPorNoche} por noche`;
         destinoSelect.appendChild(option);
     });
+
 
     alojamientos.forEach((alojamiento, index) => {
         const option = document.createElement("option");
@@ -64,6 +80,7 @@ document.getElementById("reservarBtn").addEventListener("click", () => {
     const alojamientoSelect = document.getElementById("alojamientoSelect");
     const nochesInput = document.getElementById("nochesInput").value;
 
+
     reserva.destino = destinos[destinoSelect.value];
     reserva.alojamiento = alojamientos[alojamientoSelect.value];
     reserva.noches = parseInt(nochesInput);
@@ -75,4 +92,5 @@ document.getElementById("reservarBtn").addEventListener("click", () => {
     }
 });
 
-window.onload = cargarSelects;
+
+window.onload = cargarDatos;

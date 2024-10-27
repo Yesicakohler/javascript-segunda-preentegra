@@ -1,0 +1,5 @@
+[
+    { "nombre": "Bariloche", "precioPorNoche": 600000 },
+    { "nombre": "Calafate", "precioPorNoche": 550000 },
+    { "nombre": "Cataratas del Iguazú", "precioPorNoche": 650000 }
+]

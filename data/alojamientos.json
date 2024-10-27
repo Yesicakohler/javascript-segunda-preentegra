@@ -1,0 +1,5 @@
+[
+    { "tipo": "Hotel Sol Bariloche", "precioPorNoche": 100000 },
+    { "tipo": "Hotel Mirador del Lago", "precioPorNoche": 105000 },
+    { "tipo": "Hotel Iguazú", "precioPorNoche": 95000}
+]
